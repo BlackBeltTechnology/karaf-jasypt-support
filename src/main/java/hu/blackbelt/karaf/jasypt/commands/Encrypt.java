@@ -1,6 +1,6 @@
 package hu.blackbelt.karaf.jasypt.commands;
 
-import hu.blackbelt.karaf.jasypt.Activator;
+import hu.blackbelt.karaf.jasypt.services.DefaultStringEncryptorConfig;
 import org.apache.karaf.shell.api.action.Action;
 import org.apache.karaf.shell.api.action.Argument;
 import org.apache.karaf.shell.api.action.Command;
@@ -22,7 +22,7 @@ public class Encrypt implements Action {
 
     @Option(name = "--algorithm", description = "Algorithm of encryption", required = false, multiValued = false)
     @Completion(PBEAlgorithmCompleter.class)
-    private String algorithm = Activator.ENCRYPTION_ALGORITHM;
+    private String algorithm = DefaultStringEncryptorConfig.DEFAULT_ENCRYPTION_ALGORITHM;
 
     @Option(name = "--password", description = "Password for encryption", required = false, multiValued = false)
     private String password;
@@ -39,7 +39,7 @@ public class Encrypt implements Action {
         if (password != null) {
             config.setPassword(password);
         } else {
-            config.setPasswordEnvName(Activator.ENCRYPTION_PASSWORD_ENV_NAME);
+            config.setPasswordEnvName(DefaultStringEncryptorConfig.DEFAULT_ENCRYPTION_PASSWORD_ENV_NAME);
         }
         config.setStringOutputType(outputType);
         encryptor.setConfig(config);

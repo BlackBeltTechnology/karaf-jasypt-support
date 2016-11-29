@@ -17,7 +17,19 @@
             <version>${osgi.version}</version>
             <scope>provided</scope>
         </dependency>
-            
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.component.annotations</artifactId>
+            <version>${osgi-ds.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.metatype.annotations</artifactId>
+            <version>${osgi-ds.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -79,7 +91,6 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>hu.blackbelt.karaf.jasypt.Activator</Bundle-Activator>
                         <Export-Package/>
                         <Import-Package>
                             org.apache.felix.service.command,
@@ -97,7 +108,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
-        <osgi.version>4.3.1</osgi.version>
+        <osgi.version>6.0.0</osgi.version>
+        <osgi-ds.version>1.3.0</osgi-ds.version>
         
         <findbugs.annotations.version>3.0.0</findbugs.annotations.version>
         <lombok.version>1.16.10</lombok.version>
