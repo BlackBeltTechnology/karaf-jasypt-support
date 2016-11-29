@@ -7,6 +7,7 @@ This bundle is a helper for Jasypt (http://www.jasypt.org) running on Apache Kar
 
 ## Usage
 
+* install feature: jasypt-encryption
 * drop bundle into deploy/ directory of Apache Karaf container
 * set environment variable (ENCRYPTION_PASSWORD by default) for encryption password
 ```
@@ -15,3 +16,9 @@ $ KARAF_HOME/bin/karaf -DENCRYPTION_PASSWORD=password
 * configure default StringEncryptor (not created without configuration!)
   * create hu.blackbelt.karaf.jasypt.services.DefaultStringEncryptorConfig.cfg configuration file in deploy/ directory
   * or create configuration using WebConsole (all options are displayed automatically)
+* (optional) encrypt password (using Karaf command) and replace password in DBCP2 configuration files
+```
+...
+password=ENC(encrypted_password)
+...
+```
