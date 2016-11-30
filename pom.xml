@@ -54,7 +54,7 @@
         <dependency>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
-            <version>1.9.2</version>
+            <version>${jasypt.version}</version>
             <scope>provided</scope>
         </dependency>
         
@@ -62,13 +62,6 @@
             <groupId>org.apache.karaf.shell</groupId>
             <artifactId>org.apache.karaf.shell.console</artifactId>
             <version>${karaf.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.ops4j.pax.jdbc</groupId>
-            <artifactId>pax-jdbc-config</artifactId>
-            <version>${pax.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -116,6 +109,6 @@
         <slf4j.version>1.7.21</slf4j.version>
         
         <karaf.version>4.0.7</karaf.version>
-        <pax.version>0.9.0</pax.version>
+        <jasypt.version>1.9.2</jasypt.version>
     </properties>
 </project>
