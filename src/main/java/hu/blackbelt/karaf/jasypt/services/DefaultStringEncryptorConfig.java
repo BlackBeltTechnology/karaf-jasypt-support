@@ -1,7 +1,12 @@
 package hu.blackbelt.karaf.jasypt.services;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import lombok.extern.slf4j.Slf4j;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;
@@ -29,6 +34,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
  */
 @Component(immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE, service = DefaultStringEncryptorConfig.class)
 @Designate(ocd = DefaultStringEncryptorConfig.Config.class)
+@Slf4j
 public class DefaultStringEncryptorConfig {
 
     @SuppressWarnings("checkstyle:JavadocMethod")
@@ -40,6 +46,9 @@ public class DefaultStringEncryptorConfig {
 
         @AttributeDefinition(required = false, name = "Password for encryption", type = AttributeType.PASSWORD)
         String encryption_password();
+
+        @AttributeDefinition(required = false, name = "Password file for encryption")
+        String encryption_passwordFile();
 
         @AttributeDefinition(required = false, name = "Environment variable holding encryption algorithm")
         String encryption_passwordEnvName();
@@ -72,6 +81,8 @@ public class DefaultStringEncryptorConfig {
         encryptorConfig.setAlgorithm(config.encryption_algorithm());
         if (config.encryption_password() != null) {
             encryptorConfig.setPassword(config.encryption_password());
+        } else if (config.encryption_passwordFile() != null) {
+            encryptorConfig.setPassword(loadPassword(config.encryption_passwordFile()));
         } else if (config.encryption_passwordEnvName() != null) {
             encryptorConfig.setPasswordEnvName(config.encryption_passwordEnvName());
         }
@@ -99,6 +110,22 @@ public class DefaultStringEncryptorConfig {
             }
         } finally {
             defaultStringEncryptor = null;
+        }
+    }
+
+    /**
+     * Load password from file.
+     *
+     * @param file file that contains password, using default charset of platform
+     * @return plain text password
+     */
+    private static String loadPassword(final String file) {
+        try {
+            byte[] encoded = Files.readAllBytes(Paths.get(file));
+            return new String(encoded, Charset.defaultCharset());
+        } catch (IOException ex) {
+            log.error("Unable to read password from file: " + file, ex);
+            return null;
         }
     }
 }
