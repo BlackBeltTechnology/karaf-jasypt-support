@@ -19,7 +19,6 @@
         <deployOnly>false</deployOnly>
         <log4j.configuration>log4j.properties</log4j.configuration>
 
-
         <findbugs.annotations.version>3.0.0</findbugs.annotations.version>
         <lombok.version>1.18.22</lombok.version>
         <slf4j.version>1.7.21</slf4j.version>
@@ -183,12 +182,14 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+                        <Export-Package/>
                         <Import-Package>
-                            !lombok,
-                            javax.annotation;version="[1.0,2)",
+                            org.apache.felix.service.command,
+                            org.apache.karaf.shell.commands,
+                            org.apache.karaf.shell.console,
                             *
                         </Import-Package>
-                        <!-- <Include-Resource>{maven-resources}</Include-Resource> -->
+                        <Karaf-Commands>*</Karaf-Commands>
                     </instructions>
                 </configuration>
             </plugin>
