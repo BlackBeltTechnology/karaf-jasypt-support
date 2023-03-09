@@ -20,7 +20,7 @@
         <log4j.configuration>log4j.properties</log4j.configuration>
 
         <findbugs.annotations.version>3.0.0</findbugs.annotations.version>
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <slf4j.version>1.7.21</slf4j.version>
 
         <karaf.version>4.0.7</karaf.version>
@@ -346,7 +346,7 @@
                     <dependency>
                         <groupId>org.projectlombok</groupId>
                         <artifactId>lombok</artifactId>
-                        <version>1.18.24</version>
+                        <version>1.18.26</version>
                     </dependency>
                 </dependencies>
             </plugin>
