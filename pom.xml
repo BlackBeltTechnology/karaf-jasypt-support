@@ -23,7 +23,7 @@
         <lombok.version>1.18.22</lombok.version>
         <slf4j.version>1.7.21</slf4j.version>
 
-        <karaf.version>4.0.7</karaf.version>
+        <karaf.version>4.4.3</karaf.version>
         <jasypt.version>1.9.2</jasypt.version>
 
         <surefire-version>3.0.0-M7</surefire-version>
