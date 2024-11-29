@@ -26,7 +26,7 @@
         <karaf.version>4.0.7</karaf.version>
         <jasypt.version>1.9.2</jasypt.version>
 
-        <surefire-version>3.0.0-M7</surefire-version>
+        <surefire-version>3.1.2</surefire-version>
         <!--suppress UnresolvedMavenProperty -->
         <logback-test-config>${maven.multiModuleProjectDirectory}/logback-test.xml</logback-test-config>
 
@@ -193,7 +193,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.1.2</version>
                 <configuration>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                     <trimStackTrace>false</trimStackTrace>
