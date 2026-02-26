@@ -23,3 +23,7 @@ nb*.xml
 
 
 **/.flattened-pom.xml
+.claude
+.gemini
+.opencode
+.agent
