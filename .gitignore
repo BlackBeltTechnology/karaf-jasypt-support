@@ -23,3 +23,8 @@ nb*.xml
 
 
 **/.flattened-pom.xml
+.claude/commands/opsx
+.claude/skills/openspec-*.md
+.gemini
+.opencode
+.agent
