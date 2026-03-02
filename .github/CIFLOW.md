@@ -32,7 +32,7 @@ gitGraph
     commit id: "dev-2"
     checkout release/1.0-beta1
     commit id: "bugfix"
-    checkout main
+    checkout master
     merge release/1.0-beta1 id: "release-1.0"
     checkout develop
     merge release/1.0-beta1 id: "merge-release"
