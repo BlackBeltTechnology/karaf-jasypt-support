@@ -1,0 +1,38 @@
+# Jasypt Karaf Support
+
+> Provides Jasypt encryption/decryption support as an OSGi bundle for Apache Karaf, registering a default StringEncryptor service and exposing Karaf console commands for cryptographic operations.
+
+Key facts:
+- Java 11, single-module Maven project with Maven Wrapper (`./mvnw`)
+- OSGi bundle packaged with Felix Maven Bundle Plugin
+- Core dependencies: Apache Karaf 4.0.7, Jasypt 1.9.2, OSGi 6.0.0
+- Registers a `StringEncryptor` OSGi service (highest priority) used by PAX-JDBC for encrypted database passwords
+- Exposes four Karaf shell commands: `jasypt:encrypt`, `jasypt:decrypt`, `jasypt:digest`, `jasypt:info`
+- License: Apache 2.0
+
+## Docs
+
+- [README.md](README.md): Project overview, usage instructions, and configuration guide
+- [AGENTS.md](AGENTS.md): Developer guide with build commands, architecture, and coding conventions
+- [CONTRIBUTING.md](CONTRIBUTING.md): Development setup and contribution guidelines
+- [.github/CIFLOW.md](.github/CIFLOW.md): Branching strategy and CI/CD pipeline documentation
+
+## Source — Services
+
+- [pom.xml](pom.xml): Maven build configuration with OSGi bundle packaging, CI-friendly versioning, and deployment profiles
+- [src/main/java/hu/blackbelt/karaf/jasypt/services/DefaultStringEncryptorConfig.java](src/main/java/hu/blackbelt/karaf/jasypt/services/DefaultStringEncryptorConfig.java): OSGi DS component that creates and registers a StringEncryptor service via ConfigAdmin
+
+## Source — Karaf Commands
+
+- [src/main/java/hu/blackbelt/karaf/jasypt/commands/Encrypt.java](src/main/java/hu/blackbelt/karaf/jasypt/commands/Encrypt.java): `jasypt:encrypt` command for PBE encryption
+- [src/main/java/hu/blackbelt/karaf/jasypt/commands/Decrypt.java](src/main/java/hu/blackbelt/karaf/jasypt/commands/Decrypt.java): `jasypt:decrypt` command for PBE decryption
+- [src/main/java/hu/blackbelt/karaf/jasypt/commands/Digest.java](src/main/java/hu/blackbelt/karaf/jasypt/commands/Digest.java): `jasypt:digest` command for digest computation and validation
+- [src/main/java/hu/blackbelt/karaf/jasypt/commands/Info.java](src/main/java/hu/blackbelt/karaf/jasypt/commands/Info.java): `jasypt:info` command listing available algorithms
+- [src/main/java/hu/blackbelt/karaf/jasypt/commands/OutputTypeCompleter.java](src/main/java/hu/blackbelt/karaf/jasypt/commands/OutputTypeCompleter.java): Tab completion for output types (base64, hexadecimal)
+- [src/main/java/hu/blackbelt/karaf/jasypt/commands/PBEAlgorithmCompleter.java](src/main/java/hu/blackbelt/karaf/jasypt/commands/PBEAlgorithmCompleter.java): Tab completion for PBE algorithms
+- [src/main/java/hu/blackbelt/karaf/jasypt/commands/DigestAlgorithmCompleter.java](src/main/java/hu/blackbelt/karaf/jasypt/commands/DigestAlgorithmCompleter.java): Tab completion for digest algorithms
+
+## Optional
+
+- [.github/workflows/build.yml](.github/workflows/build.yml): Main CI pipeline (build, test, deploy, tag, release)
+- [LICENSE.txt](LICENSE.txt): Apache 2.0 license text
